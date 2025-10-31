@@ -73,6 +73,7 @@ class TodoHomeScreen extends ConsumerWidget {
                         child: const Text('Volver'),
                       ),
                       TextButton(
+                        key: const Key('addTaskButton'),
                         onPressed: () {
                           if (inputValidator(controller.text) == null) {
                             Fluttertoast.showToast(
