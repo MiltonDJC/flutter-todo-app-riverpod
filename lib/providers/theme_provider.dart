@@ -1,6 +1,10 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_todo_app/notifiers/theme_notifier.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+part 'theme_provider.g.dart';
 
-final themeProvider = NotifierProvider.autoDispose<ThemeNotifier, bool>(
-  ThemeNotifier.new,
-);
+@riverpod
+class ThemeNotifier extends _$ThemeNotifier {
+  @override
+  bool build() => true;
+
+  void toggleTheme() => state = !state;
+}
