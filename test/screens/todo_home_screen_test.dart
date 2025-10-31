@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_todo_app/screens/task_detail_screen.dart';
 import 'package:flutter_todo_app/screens/todo_home_screen.dart';
 
 void main() {
@@ -184,6 +185,44 @@ void main() {
           textWidget.style?.decoration,
           TextDecoration.none,
         ); // o lineThrough
+      },
+    );
+    testWidgets(
+      'Given a task added on the TodoHomeScreen, when the user taps the task tile, then TaskDetailScreen is pushed and displays task details',
+      (WidgetTester tester) async {
+        // Renderizamos la pantalla principal
+        await tester.pumpWidget(
+          UncontrolledProviderScope(
+            container: container,
+            child: const ProviderScope(
+              child: MaterialApp(home: TodoHomeScreen()),
+            ),
+          ),
+        );
+
+        // Agregamos una tarea usando el FAB y el AlertDialog
+        await tester.tap(find.byType(FloatingActionButton));
+        await tester.pumpAndSettle();
+
+        await tester.enterText(find.byType(TextField), 'learn Riverpod');
+        await tester.tap(find.byKey(const Key('addTaskButton')));
+        await tester.pumpAndSettle();
+
+        // Verificamos que la tarea se muestra en la pantalla principal
+        expect(find.text('Learn Riverpod'), findsOneWidget);
+
+        // Tapping en el ListTile para navegar
+        await tester.tap(find.byType(ListTile));
+        await tester
+            .pumpAndSettle(); // Esperamos que la animación de navegación termine
+
+        // Ahora deberíamos estar en TaskDetailScreen
+        expect(find.byType(TaskDetailScreen), findsOneWidget);
+        expect(find.text('Learn Riverpod'), findsOneWidget);
+        expect(
+          find.text('Sin descripción'),
+          findsOneWidget,
+        ); // Por defecto si no hay descripción
       },
     );
   });
