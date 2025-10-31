@@ -3,9 +3,9 @@
 ## 🧠 Provider vs Riverpod — Comparision
 
 ### 💡 Introduction
-Both **Provider** and **Riverpod** are libraries for **state management** int Flutter. Provider was the first solution widely adopted by the community, but Riverpod emerges as its modern evolution: **safer, more modular, and decoupled from the widget tree**.
+Both **Provider** and **Riverpod** are libraries for **state management** int Flutter. Provider was the first solution widely adopted by the community, but Riverpod emerges as its modern evolution: **safer, more modular and decoupled from the widget tree**.
 
-In this project, the same application [flutter-todo-app-provider](https://github.com/MiltonDJC/flutter-todo-app-provider.git) was implemented but using ```Rvierpod```, with the goal of comparing its architecture, readability, and maintainability.
+In this project, the same application [flutter-todo-app-provider](https://github.com/MiltonDJC/flutter-todo-app-provider.git) was implemented but using ```Rvierpod```, with the goal of comparing its architecture, readability and maintainability.
 
 ---
 
@@ -108,10 +108,56 @@ ConsumerWidget (dependents only) → partial rebuild
 
 >**Note:** The diagram shows that **Provider** on the **BuildContext**, whereas **Riverpod** uses ```ref``` to access the state, allowing for a cleaner separation between business logic and the interface.
 
+---
+
+## ⚙️ Additional Update
+Refactor the Todo App to use code generation for providers via ```build_runner``` and ```riverpod_generator```.
+This improves maintainability, reduces boilerplate and aligns with **professional Riverpod practices**.
+
+### 🧠 Implementation
+1. 
+```yaml
+dependencies:
+  riverpod_annotation: ^3.0.3
+
+dev_dependencies:
+  build_runner:
+  riverpod_generator: ^3.0.3
+  custom_lint:
+  riverpod_lint: ^3.0.3
+```
+2. Refactores main providers: ```task_provider.dart``` and ```theme_provider.dart``` using the modern ```@riverpod``` annotation:
+
+```dart
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+part 'task_provider.g.dart';
+
+@riverpod
+class TaskNotifier extends _$TaskNotifier {
+  @override
+  List<Task> build() => const [];
+
+  void addTask(String taskName) { ... }
+  void removeTask(Task task) { ... }
+  void toggleStatus(Task task) { ... }
+  void updateTask(Task task, {String? taskName, bool? status, String? description}) { ... }
+}
+```
+3. Generated ```.g.dart``` files with:
+```bash
+dart run build_runner watch -d
+```
+
+## ✅ Result
+
+The project now elverages **Riverpod 3 with code generation**, maintaining a **clean, scalable and testeable architecture**.
+
+---
+
 ### ✅ Conclusion
 * **Provider** is ideal for small projects or for learning the basic concepts of reactivity in Flutter.
 
-* **Riverpod**, on the other hand, is a more robust evolution: it eliminates context dependencies, improves performance, and facilitates testing and modularity.
+* **Riverpod**, on the other hand, is a more robust evolution: it eliminates context dependencies, improves performance and facilitates testing and modularity.
 
 * EFor medium or large-scale applications, **Riverpod** is currently the most recommended option by the community.
 
