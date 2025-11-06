@@ -150,7 +150,7 @@ dart run build_runner watch -d
 
 ## ✅ Result
 
-The project now elverages **Riverpod 3 with code generation**, maintaining a **clean, scalable and testeable architecture**.
+The project now leverages **Riverpod 3 with code generation**, maintaining a **clean, scalable and testeable architecture**.
 
 ---
 
