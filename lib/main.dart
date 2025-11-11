@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_todo_app/providers/theme_provider.dart';
-import 'package:flutter_todo_app/screens/todo_home_screen.dart';
+import 'package:flutter_todo_app/router/router.dart';
 import 'package:flutter_todo_app/theme/theme.dart';
 
 void main() {
@@ -14,14 +14,14 @@ class MainApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final themeMode = ref.watch(themeProvider);
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Todo App Riverpod',
       themeMode: themeMode ? ThemeMode.light : ThemeMode.dark,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeAnimationDuration: const Duration(milliseconds: 200),
-      home: const TodoHomeScreen(),
+      routerConfig: router,
     );
   }
 }
