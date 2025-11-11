@@ -179,7 +179,6 @@ void main() {
     testWidgets(
       'Given a task added on the TodoHomeScreen, when the user taps the task tile, then TaskDetailScreen is pushed and displays task details',
       (WidgetTester tester) async {
-        // Renderizamos la pantalla principal
         await tester.pumpWidget(
           UncontrolledProviderScope(
             container: container,
@@ -187,7 +186,6 @@ void main() {
           ),
         );
 
-        // Agregamos una tarea usando el FAB y el AlertDialog
         await tester.tap(find.byType(FloatingActionButton));
         await tester.pumpAndSettle();
 
@@ -195,21 +193,14 @@ void main() {
         await tester.tap(find.byKey(const Key('addTaskButton')));
         await tester.pumpAndSettle();
 
-        // Verificamos que la tarea se muestra en la pantalla principal
         expect(find.text('Learn Riverpod'), findsOneWidget);
 
-        // Tapping en el ListTile para navegar
         await tester.tap(find.byType(ListTile));
-        await tester
-            .pumpAndSettle(); // Esperamos que la animación de navegación termine
+        await tester.pumpAndSettle();
 
-        // Ahora deberíamos estar en TaskDetailScreen
         expect(find.byType(TaskDetailScreen), findsOneWidget);
         expect(find.text('#0 Learn Riverpod'), findsOneWidget);
-        expect(
-          find.text('Sin descripción'),
-          findsOneWidget,
-        ); // Por defecto si no hay descripción
+        expect(find.text('Sin descripción'), findsOneWidget);
       },
     );
   });
