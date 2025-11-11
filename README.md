@@ -87,11 +87,16 @@ lib/
    └─ router.dart  # Setting up navigation in the app
 
 test/
+├─ providers/
+│  ├─ task_provider_test.dart
+│  └─ theme_provider_test.dart
 ├─ screens/
-│  └─ task_detail_screen_test.dart
-├─ unit/
-│  ├─ dark_mode_provider_test.dart
-│  └─ task_manager_test.dart
+│  ├─ task_detail_screen_test.dart
+│  └─ todo_home_screen_test.dart
+└─ utils/
+   ├─ input_formatter_test.dart
+   ├─ input_validator_test.dart
+   └─ is_task_repeated_test.dart
 └─ widgets/
    └─ task_tile_test.dart
 ```
