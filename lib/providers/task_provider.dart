@@ -5,11 +5,16 @@ part 'task_provider.g.dart';
 
 @riverpod
 class TaskNotifier extends _$TaskNotifier {
+  int _taskId = 0;
+
+  void _incrementId() => _taskId++;
+
   @override
   List<Task> build() => const [];
 
   void addTask(String taskName) {
-    state = [...state, Task(taskName: inputFormatter(taskName))];
+    state = [...state, Task(id: _taskId, taskName: inputFormatter(taskName))];
+    _incrementId();
   }
 
   void removeTask(Task task) {
@@ -23,16 +28,15 @@ class TaskNotifier extends _$TaskNotifier {
     ];
   }
 
-  // Todo: Implementar actualización de tareas
-  void updateTask(
-    Task task,
+  void updateTask({
+    required int id,
     String? taskName,
     bool? status,
     String? description,
-  ) {
+  }) {
     state = [
       for (Task item in state)
-        item == task
+        item.id == id
             ? item.copyWith(
                 taskName: taskName,
                 status: status,
