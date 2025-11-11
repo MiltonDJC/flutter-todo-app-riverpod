@@ -110,7 +110,7 @@ Flutter 3+ is required.
 1. **Clone the repository:**
 
 ```bash
-git clone https://github.com/MiltonDJC/flutter-todo-app.git
+git clone https://github.com/MiltonDJC/flutter-todo-app-riverpod.git
 
 cd flutter-todo-app
 ```
