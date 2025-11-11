@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_todo_app/router/router.dart';
 import 'package:flutter_todo_app/screens/task_detail_screen.dart';
 import 'package:flutter_todo_app/screens/todo_home_screen.dart';
 
@@ -22,9 +23,7 @@ void main() {
         await tester.pumpWidget(
           UncontrolledProviderScope(
             container: container,
-            child: const ProviderScope(
-              child: MaterialApp(home: TodoHomeScreen()),
-            ),
+            child: const MaterialApp(home: TodoHomeScreen()),
           ),
         );
 
@@ -38,9 +37,7 @@ void main() {
         await tester.pumpWidget(
           UncontrolledProviderScope(
             container: container,
-            child: const ProviderScope(
-              child: MaterialApp(home: TodoHomeScreen()),
-            ),
+            child: const MaterialApp(home: TodoHomeScreen()),
           ),
         );
 
@@ -59,9 +56,7 @@ void main() {
         await tester.pumpWidget(
           UncontrolledProviderScope(
             container: container,
-            child: const ProviderScope(
-              child: MaterialApp(home: TodoHomeScreen()),
-            ),
+            child: const MaterialApp(home: TodoHomeScreen()),
           ),
         );
 
@@ -85,9 +80,7 @@ void main() {
         await tester.pumpWidget(
           UncontrolledProviderScope(
             container: container,
-            child: const ProviderScope(
-              child: MaterialApp(home: TodoHomeScreen()),
-            ),
+            child: const MaterialApp(home: TodoHomeScreen()),
           ),
         );
 
@@ -119,9 +112,7 @@ void main() {
         await tester.pumpWidget(
           UncontrolledProviderScope(
             container: container,
-            child: const ProviderScope(
-              child: MaterialApp(home: TodoHomeScreen()),
-            ),
+            child: const MaterialApp(home: TodoHomeScreen()),
           ),
         );
 
@@ -154,9 +145,7 @@ void main() {
         await tester.pumpWidget(
           UncontrolledProviderScope(
             container: container,
-            child: const ProviderScope(
-              child: MaterialApp(home: TodoHomeScreen()),
-            ),
+            child: const MaterialApp(home: TodoHomeScreen()),
           ),
         );
 
@@ -194,9 +183,7 @@ void main() {
         await tester.pumpWidget(
           UncontrolledProviderScope(
             container: container,
-            child: const ProviderScope(
-              child: MaterialApp(home: TodoHomeScreen()),
-            ),
+            child: MaterialApp.router(routerConfig: router),
           ),
         );
 
@@ -218,7 +205,7 @@ void main() {
 
         // Ahora deberíamos estar en TaskDetailScreen
         expect(find.byType(TaskDetailScreen), findsOneWidget);
-        expect(find.text('Learn Riverpod'), findsOneWidget);
+        expect(find.text('#0 Learn Riverpod'), findsOneWidget);
         expect(
           find.text('Sin descripción'),
           findsOneWidget,

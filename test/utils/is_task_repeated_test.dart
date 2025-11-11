@@ -9,7 +9,7 @@ void main() {
     late List<Task> tasks;
 
     setUp(() {
-      task = const Task(taskName: 'Learn Riverpod');
+      task = const Task(id: 0, taskName: 'Learn Riverpod');
       taskName = task.taskName;
       tasks = [task];
     });
@@ -17,7 +17,7 @@ void main() {
     test(
       'Given a list of tasks, when the task to add is not inside, then returns false',
       () {
-        final taskNotInList = const Task(taskName: 'Learn Flutter');
+        final taskNotInList = const Task(id: 0, taskName: 'Learn Flutter');
         expect(isTaskRepeatead(taskNotInList.taskName, tasks), isFalse);
       },
     );
