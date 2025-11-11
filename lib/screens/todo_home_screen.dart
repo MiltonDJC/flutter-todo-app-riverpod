@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_todo_app/providers/task_provider.dart';
 import 'package:flutter_todo_app/providers/theme_provider.dart';
-import 'package:flutter_todo_app/screens/task_detail_screen.dart';
-import 'package:flutter_todo_app/utils/input_validator.dart';
-import 'package:flutter_todo_app/utils/is_task_repeated.dart';
+import 'package:flutter_todo_app/widgets/task_dialog_content.dart';
 import 'package:flutter_todo_app/widgets/task_tile.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
 
 class TodoHomeScreen extends ConsumerWidget {
   const TodoHomeScreen({super.key});
@@ -35,11 +33,9 @@ class TodoHomeScreen extends ConsumerWidget {
               status: task.status,
               onPressed: () => taskActions.removeTask(task),
               onChanged: (_) => taskActions.toggleStatus(task),
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => TaskDetailScreen(task: task),
-                ),
+              onTap: () => context.pushNamed(
+                'detail',
+                pathParameters: {'id': '${task.id}'},
               ),
             );
           },
@@ -48,52 +44,7 @@ class TodoHomeScreen extends ConsumerWidget {
           onPressed: () => showDialog(
             context: context,
             builder: (context) {
-              final controller = TextEditingController();
-              return AlertDialog(
-                title: const Text('Nueva tarea', textAlign: TextAlign.center),
-                content: TextField(
-                  controller: controller,
-                  decoration: const InputDecoration(
-                    hintText: 'Escriba el titulo de la tarea',
-                  ),
-                  maxLength: 500,
-                  minLines: 1,
-                  maxLines: 50,
-                  autofocus: true,
-                  textAlign: TextAlign.start,
-                ),
-                actions: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text('Volver'),
-                      ),
-                      TextButton(
-                        key: const Key('addTaskButton'),
-                        onPressed: () {
-                          if (inputValidator(controller.text) == null) {
-                            Fluttertoast.showToast(
-                              msg: 'Escriba el titulo de la tarea',
-                            );
-                          } else if (isTaskRepeatead(controller.text, tasks)) {
-                            Fluttertoast.showToast(
-                              msg: 'La tarea ya se encuentra en la lista',
-                            );
-                          } else {
-                            taskActions.addTask(controller.text);
-                            Navigator.pop(context);
-                          }
-                        },
-                        child: const Text('Agregar'),
-                      ),
-                    ],
-                  ),
-                ],
-              );
+              return const TaskDialogContent();
             },
           ),
           child: const Icon(Icons.add),
