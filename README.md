@@ -1,4 +1,183 @@
-# flutter_todo_app_riverpod
+# Flutter ToDo App
+
+A simple **ToDo application** built with **Flutter**.  
+This app demonstrates fundamental concepts such as **state management**, **custom widgets**, **lists**, **theming**, **navigation**, and **testing** in Flutter.
+
+---
+
+## 📦 Features in This Release
+
+- Add tasks with a title (first letter automatically capitalized).
+- Mark tasks as completed or incomplete.
+- Display tasks in a scrollable list.
+- Navigate to a Task Detail Screen by tapping on a task.
+- Show task status visually (completed/incomplete) in the detail screen.
+- Prevent empty or whitespace-only tasks from being added.
+- Centralized state management in memory using TaskManager (no database yet).
+- Toggle between light and dark mode with smooth transition.
+- Unit and widget tests covering task logic, UI interaction, and navigation.
+
+---
+
+## 🎬 App Showcase
+
+Below you can see the main features of the **Flutter ToDo App** in action.
+
+### 🏠 Home Screen — Add and Manage Tasks
+Add new tasks, mark them as complete or delete them.  
+<br>
+<p align="center">
+  <img src="assets/gifs/home_screen.gif" alt="Home Screen" width="300"/>
+</p>
+
+---
+
+### 🌗 Theme Toggle — Light / Dark Mode
+Switch seamlessly between light and dark themes.  
+<br>
+<p align="center">
+  <img src="assets/gifs/theme_toggle.gif" alt="Theme Toggle" width="300"/>
+</p>
+
+---
+
+### 🔍 Task Detail Screen
+View task details and status visually on a dedicated screen.  
+<br>
+<p align="center">
+  <img src="assets/gifs/task_detail.gif" alt="Task Detail Screen" width="300"/>
+</p>
+
+---
+
+## 🛠 Tech Stack
+
+- **Flutter** (>=3.0)
+- **Dart**
+- **Fluttertoast** (for user feedback)
+- **flutter_test** (for unit testing and widget testing)
+
+---
+
+## 📁 Project Structure
+```
+lib/
+├─ main.dart  # App entry point and theme management
+├─ theme/
+│  └─ theme.dart  # Light/Dark theme configurations
+├─ screens/
+│  ├─ home_screen.dart  # Main ToDo screen
+│  ├─ not_found_screen.dart  # Display displayed if expected display does not exist
+│  └─ task_detail_screen.dart  # Detail screen for a task
+├─ widgets/
+   ├─ task_dialog_content.dart #  Custom dynamic Alert Dialog
+│  └─ task_tile.dart  # Task item widget with checkbox, delete, and tap actions
+├─ models/
+│  └─ task.dart  # Task model
+├─ managers/
+│  └─ task_manager.dart  # Task management logic
+└─ utils/
+   ├─ input_formatter.dart  # Method to format title task to use Capitalize case
+   ├─ input_validator.dart  # Method to valida if the task title is null or empty
+   └─ is_task_repeated.dart  # Method to verify if a task is repeated
+└─ providers/
+   ├─ task_provider.dart  # Methods that manipulate task provider state 
+   └─ theme_provider.dart  # Theme state config
+└─ router/
+   └─ router.dart  # Setting up navigation in the app
+
+test/
+├─ screens/
+│  └─ task_detail_screen_test.dart
+├─ unit/
+│  ├─ dark_mode_provider_test.dart
+│  └─ task_manager_test.dart
+└─ widgets/
+   └─ task_tile_test.dart
+```
+
+---
+
+## 🚀 Installation & Run
+
+Flutter 3+ is required.
+
+1. **Clone the repository:**
+
+```bash
+git clone https://github.com/MiltonDJC/flutter-todo-app.git
+
+cd flutter-todo-app
+```
+
+2. **Get dependencies:**
+```bash
+flutter pub get
+```
+
+3. **Run the app:**
+```bash
+flutter run
+```
+
+Or build an APK for Android:
+```bash
+flutter build apk --debug
+```
+
+<br>
+
+> **Note:** Tasks are stored in memory only; they will reset when the app restarts.
+
+---
+
+## ✅ Testing
+
+Unit and widget tests cover:
+
+- Adding tasks
+- Toggling task completion
+- Preventing empty or whitespace-only tasks
+- TaskTile interactions (add, complete, delete)
+- Navigation to **TaskDetailScreen**
+- Displaying correct task status in the detail screen
+
+Run tests with:
+
+```bash
+flutter test
+```
+
+---
+
+## 🧪 Test Coverage
+
+You can generate a **test coverage report** to see which parts of the code are covered by tests.
+
+1. Run tests with coverage:
+
+```bash
+flutter test --coverage
+```
+
+2. This generates a file ```coverage/lcov.info```.
+
+3. To view a visual HTML report:
+```bash
+# Install lcov if you don't have it (Linux/macOS)
+
+sudo apt-get install lcov  # or brew install lcov
+
+# Generate HTML report
+genhtml coverage/lcov.info -o coverage/html
+```
+
+4. Open the report in your browser:
+```bash
+open coverage/html/index.html  # macOS
+xdg-open coverage/html/index.html  # Linux
+```
+---
 
 ## 🧠 Provider vs Riverpod — Comparision
 
@@ -87,7 +266,9 @@ class CounterScreen extends ConsumerWidget {
 }
 ```
 
-### 🧭 State Flow
+---
+
+## 🧭 State Flow
 #### Provider
 ```scss
 USER ACTION
