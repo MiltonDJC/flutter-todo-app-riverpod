@@ -184,7 +184,7 @@ xdg-open coverage/html/index.html  # Linux
 ### 💡 Introduction
 Both **Provider** and **Riverpod** are libraries for **state management** int Flutter. Provider was the first solution widely adopted by the community, but Riverpod emerges as its modern evolution: **safer, more modular and decoupled from the widget tree**.
 
-In this project, the same application [flutter-todo-app-provider](https://github.com/MiltonDJC/flutter-todo-app-provider.git) was implemented but using ```Rvierpod```, with the goal of comparing its architecture, readability and maintainability.
+In this project, the same application [flutter-todo-app-provider](https://github.com/MiltonDJC/flutter-todo-app-provider.git) was implemented but using ```Riverpod```, with the goal of comparing its architecture, readability and maintainability.
 
 ---
 
@@ -331,7 +331,7 @@ dart run build_runner watch -d
 
 ## ✅ Result
 
-The project now elverages **Riverpod 3 with code generation**, maintaining a **clean, scalable and testeable architecture**.
+The project now leverages **Riverpod 3 with code generation**, maintaining a **clean, scalable and testeable architecture**.
 
 ---
 
