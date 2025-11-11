@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_todo_app/models/task.dart';
+import 'package:flutter_todo_app/providers/task_provider.dart';
+import 'package:flutter_todo_app/widgets/task_dialog_content.dart';
 
 class TaskDetailScreen extends ConsumerWidget {
-  const TaskDetailScreen({super.key, required this.task});
+  const TaskDetailScreen({super.key, required this.taskId});
 
-  final Task task;
+  final int taskId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final Task task = ref
+        .watch(taskProvider)
+        .firstWhere((item) => item.id == taskId);
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            task.taskName,
+            '#${task.id} ${task.taskName}',
             style: Theme.of(context).textTheme.headlineMedium,
           ),
         ),
@@ -45,7 +51,12 @@ class TaskDetailScreen extends ConsumerWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () => showDialog(
+            context: context,
+            builder: (context) {
+              return TaskDialogContent(taskToEdit: task);
+            },
+          ),
           tooltip: 'Editar',
           child: const Icon(Icons.edit),
         ),
