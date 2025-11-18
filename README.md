@@ -27,7 +27,8 @@ Below you can see the main features of the **Flutter ToDo App** in action.
 Add new tasks, mark them as complete or delete them.  
 <br>
 <p align="center">
-  <img src="assets/gifs/home_screen.gif" alt="Home Screen" width="300"/>
+`ADD GIF`
+  <!-- <img src="assets/gifs/home_screen.gif" alt="Home Screen" width="300"/> -->
 </p>
 
 ---
@@ -36,7 +37,8 @@ Add new tasks, mark them as complete or delete them.
 Switch seamlessly between light and dark themes.  
 <br>
 <p align="center">
-  <img src="assets/gifs/theme_toggle.gif" alt="Theme Toggle" width="300"/>
+`ADD GIF`
+  <!-- <img src="assets/gifs/theme_toggle.gif" alt="Theme Toggle" width="300"/> -->
 </p>
 
 ---
@@ -45,7 +47,8 @@ Switch seamlessly between light and dark themes.
 View task details and status visually on a dedicated screen.  
 <br>
 <p align="center">
-  <img src="assets/gifs/task_detail.gif" alt="Task Detail Screen" width="300"/>
+`ADD GIF`
+  <!-- <img src="assets/gifs/task_detail.gif" alt="Task Detail Screen" width="300"/> -->
 </p>
 
 ---
